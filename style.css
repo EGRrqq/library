@@ -1,3 +1,15 @@
+:root {
+  --bg-color: #436976;
+
+  --content-padding: calc(0.5rem + 0.5vh);
+
+  --section-padding: clamp(1rem, calc(1.5rem + 1vw), 3vw);
+  --section-gap: calc(3rem + 0.5vh);
+  --section-item-gap: calc(1rem + 0.5vw);
+
+  --btn-min-w: calc(5rem + 1vw);
+}
+
 *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -12,6 +24,7 @@ body {
   align-items: center;
   gap: calc(1rem + 0.5vh);
   font-size: calc(0.75rem + 1vw);
+  background-color: var(--bg-color);
 }
 
 button {
@@ -22,4 +35,51 @@ button {
   color: #fff2f6;
   font-weight: 700;
   font-size: inherit;
+}
+
+fieldset {
+  display: grid;
+  gap: var(--section-item-gap);
+}
+
+.form-section {
+  display: flex;
+  gap: var(--content-padding);
+}
+
+.form-section:not(:last-of-type) {
+  flex-direction: column;
+}
+
+.form-section:last-of-type {
+  justify-content: space-between;
+}
+
+hr {
+  padding-bottom: calc(var(--content-padding) / 2);
+  border-bottom: 1px dashed black;
+}
+
+input[type="checkbox"] {
+  min-width: var(--section-padding);
+}
+
+fieldset,
+input,
+button {
+  border: 1px solid black;
+  padding: var(--content-padding);
+}
+
+input {
+  font-size: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+form {
+  background-color: white;
+  padding: var(--section-padding);
 }

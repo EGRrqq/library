@@ -1,13 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
-        <script src="script.js" defer></script>
-        <title>Library</title>
-    </head>
-    <body>
 
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <!-- <script src="script.js" defer></script> -->
+    <title>Library</title>
+</head>
+
+<body>
+    <form>
+        <fieldset>
+            <legend>add your book</legend>
+
+            <section class="form-section">
+                <label for="title">title</label>
+                <input type="text" name="title" id="title" required autofocus />
+            </section>
+
+            <section class="form-section">
+                <label for="author">author</label>
+                <input type="text" name="author" id="author" required />
+            </section>
+
+            <section class="form-section">
+                <label for="pages">number of pages</label>
+                <input type="number" name="pages" id="pages" required />
+            </section>
+
+            <section class="form-section">
+                <label for="read">book was read?</label>
+                <input type="checkbox" name="read" id="read" />
+            </section>
+
+            <hr>
+
+            <button type="submit">submit</button>
+        </fieldset>
+    </form>
+</body>
+
 </html>
