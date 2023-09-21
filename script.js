@@ -29,6 +29,13 @@ function closeModal() {
     const closeBtn = document.getElementById('close-btn');
 
     closeBtn.addEventListener('click', () =>  modal.close());
+    window.addEventListener("click", (event) => {
+        if (event.target !== modal) {
+            return;
+        }
+
+        modal.close();
+    });
 }
 
 function displayExistBook() {
@@ -91,11 +98,9 @@ function bookCard(book, container) {
 
     p.textContent = book.info();
     
-
     section.setAttribute('data-id', book.id);
-        
-
     section.appendChild(p);
+   
     removeCardBtn(section);
     toggleReadStateBtn(section, book);
     container.appendChild(section);
