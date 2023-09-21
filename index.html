@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <!-- <script src="script.js" defer></script> -->
+    <script src="script.js" defer></script>
     <title>Library</title>
 </head>
 
 <body>
-    <form>
-        <fieldset>
-            <legend>add your book</legend>
+    <dialog id="book-modal">
+        <form method="dialog">
+            <button type="button" aria-label="close" class="close-btn" formnovalidate>X</button>
 
             <section class="form-section">
                 <label for="title">title</label>
@@ -36,9 +36,13 @@
 
             <hr>
 
-            <button type="submit">submit</button>
-        </fieldset>
-    </form>
+            <button type="submit" value="default" class="submit-btn">submit</button>
+        </form>
+    </dialog>
+
+    <article>
+        <button type="button" id="show-modal">add book</button>
+    </article>
 </body>
 
 </html>

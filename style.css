@@ -83,3 +83,7 @@ form {
   background-color: white;
   padding: var(--section-padding);
 }
+
+dialog::backdrop {
+  background-color: rgb(0, 0, 0, 0.5);
+}
