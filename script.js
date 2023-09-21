@@ -49,20 +49,13 @@ function displayNewBook() {
     })
 }
 
-function bookCard(book, container) {
-    const section = document.createElement('section');
-    const p = document.createElement('p');
-    const button = document.createElement('button');
+function removeCardBtn(container) {
+    const removeBtn = document.createElement('button');
 
-    p.textContent = book.info();
-    button.classList.add('button');
-    button.textContent = 'remove';
-
-    section.setAttribute('data-id', book.id);
-    section.appendChild(p);
-    section.appendChild(button);
-
-    button.addEventListener('click', function(event) {
+    removeBtn.classList.add('button');
+    removeBtn.textContent = 'remove';
+    
+    removeBtn.addEventListener('click', function(event) {
         const section = event.target.parentElement;
         const bookId = section.getAttribute('data-id');
 
@@ -71,6 +64,40 @@ function bookCard(book, container) {
         console.log(myLibrary);
     })
 
+    container.appendChild(removeBtn);
+}
+
+function toggleReadStateBtn(container, book) {
+    const toggleReadBtn = document.createElement('button');
+    toggleReadBtn.classList.add('button');
+    toggleReadBtn.textContent = book.read ? 'Mark as Unread' : 'Mark as Read';
+    
+    toggleReadBtn.addEventListener('click', function(event) {
+        const section = event.target.parentElement;
+        const bookId = section.getAttribute('data-id');
+        
+        const bookIndex = myLibrary.findIndex(book => book.id === bookId);
+        myLibrary[bookIndex].read = !myLibrary[bookIndex].read;
+        toggleReadBtn.textContent = myLibrary[bookIndex].read ? 'Mark as Unread' : 'Mark as Read';
+        console.log(myLibrary);
+    })
+
+    container.appendChild(toggleReadBtn);
+}
+
+function bookCard(book, container) {
+    const section = document.createElement('section');
+    const p = document.createElement('p');
+
+    p.textContent = book.info();
+    
+
+    section.setAttribute('data-id', book.id);
+        
+
+    section.appendChild(p);
+    removeCardBtn(section);
+    toggleReadStateBtn(section, book);
     container.appendChild(section);
 }
 
