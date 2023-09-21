@@ -12,7 +12,7 @@
 <body>
     <dialog id="book-modal">
         <form method="dialog">
-            <button type="button" aria-label="close" class="close-btn" formnovalidate>X</button>
+            <button type="button" aria-label="close" id="close-btn" class="button" formnovalidate>X</button>
 
             <section class="form-section">
                 <label for="title">title</label>
@@ -36,12 +36,12 @@
 
             <hr>
 
-            <button type="submit" value="default" class="submit-btn">submit</button>
+            <button type="submit" value="default" class="button filled">submit</button>
         </form>
     </dialog>
 
-    <article>
-        <button type="button" id="show-modal">add book</button>
+    <article class="main">
+        <button type="button" id="show-modal" class="button filled bold">add book</button>
     </article>
 </body>
 

@@ -1,11 +1,20 @@
-const myLibrary = [];
+Book.prototype.info = function () {
+    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
+}
+
+const Harry = new Book('Signet 1984', 'George Orwell', 272, false);
+const Barry = new Book('Anchor The Stand', 'Stephen King', 1200, false);
+const Jarry = new Book('Clockwork Orange', 'Anthony Burgess', 240, false);
+
+let myLibrary = [Harry, Barry, Jarry];
 console.log('library:', myLibrary);
 
 (function library() {
     openModal();
     closeModal();
     addBookToLibrary();
-    displayBooks();
+    displayExistBook();
+    displayNewBook();
 })()
 
 function openModal() {
@@ -17,31 +26,52 @@ function openModal() {
 
 function closeModal() {
     const modal = document.getElementById('book-modal');
-    const closeBtn = document.querySelector('.close-btn');
+    const closeBtn = document.getElementById('close-btn');
 
-    closeBtn.addEventListener('click', function() {
-        modal.close();
-    })
+    closeBtn.addEventListener('click', () =>  modal.close());
 }
 
-function displayBooks() {
-    const body = document.querySelector('body');
-    const ul = document.createElement('ul');
-    body.appendChild(ul);
+function displayExistBook() {
+    const main = document.querySelector('.main');
+    
+    for (let book of myLibrary) {
+        bookCard(book, main);
+    }
+}
 
-    Book.prototype.display = false;
+function displayNewBook() {
     const form = document.querySelector('form');
+    const main = document.querySelector('.main');
 
     form.addEventListener('submit', function() {
         const book = myLibrary[myLibrary.length - 1];
-
-        if (!book.display) {
-            book.display = true;
-            const li = document.createElement('li');
-            li.textContent = book.info();
-            ul.appendChild(li);
-        }
+        bookCard(book, main);
     })
+}
+
+function bookCard(book, container) {
+    const section = document.createElement('section');
+    const p = document.createElement('p');
+    const button = document.createElement('button');
+
+    p.textContent = book.info();
+    button.classList.add('button');
+    button.textContent = 'remove';
+
+    section.setAttribute('data-id', book.id);
+    section.appendChild(p);
+    section.appendChild(button);
+
+    button.addEventListener('click', function(event) {
+        const section = event.target.parentElement;
+        const bookId = section.getAttribute('data-id');
+
+        myLibrary = myLibrary.filter(book => book.id !== bookId);
+        section.remove();
+        console.log(myLibrary);
+    })
+
+    container.appendChild(section);
 }
 
 function addBookToLibrary() {
@@ -50,7 +80,7 @@ function addBookToLibrary() {
     form.addEventListener('submit', function() {
         let tempBook = new Book()
 
-        const args = Object.keys(tempBook).map(key => {
+        const args = Object.keys(tempBook).filter(key => key !== 'id').map(key => {
             if (key === 'read') {
                 return document.getElementById(key).checked;
             }
@@ -69,8 +99,5 @@ function Book(title, author, pages, read) {
     this.author = author;
     this.pages = pages;
     this.read = read || false;
-}
-
-Book.prototype.info = function() {
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
+    this.id = Math.random().toString(36).substring(2);
 }

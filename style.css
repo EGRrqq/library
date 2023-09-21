@@ -27,16 +27,6 @@ body {
   background-color: var(--bg-color);
 }
 
-button {
-  padding: calc(0.5rem + 0.5vw);
-  cursor: pointer;
-  border-radius: 0.5rem;
-  background-color: #3394c1;
-  color: #fff2f6;
-  font-weight: 700;
-  font-size: inherit;
-}
-
 fieldset {
   display: grid;
   gap: var(--section-item-gap);
@@ -66,7 +56,7 @@ input[type="checkbox"] {
 
 fieldset,
 input,
-button {
+.button {
   border: 1px solid black;
   padding: var(--content-padding);
 }
@@ -75,7 +65,18 @@ input {
   font-size: inherit;
 }
 
-button {
+.filled {
+  background-color: #3394c1;
+  color: #fff2f6;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.button {
+  border-radius: 0.5rem;
+  font-size: inherit;
   cursor: pointer;
 }
 
