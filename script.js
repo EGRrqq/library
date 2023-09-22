@@ -60,7 +60,8 @@ function removeCardBtn(container) {
     const removeBtn = document.createElement('button');
 
     removeBtn.classList.add('button');
-    removeBtn.textContent = 'remove';
+    removeBtn.textContent = '-';
+    removeBtn.setAttribute('aria-label', 'remove book');
 
     removeBtn.addEventListener('click', function(event) {
         const section = event.target.parentElement;
