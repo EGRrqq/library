@@ -1,4 +1,4 @@
-Book.prototype.info = function () {
+Book.prototype.info = function() {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
 }
 
@@ -28,7 +28,7 @@ function closeModal() {
     const modal = document.getElementById('book-modal');
     const closeBtn = document.getElementById('close-btn');
 
-    closeBtn.addEventListener('click', () =>  modal.close());
+    closeBtn.addEventListener('click', () => modal.close());
     window.addEventListener("click", (event) => {
         if (event.target !== modal) {
             return;
@@ -40,7 +40,7 @@ function closeModal() {
 
 function displayExistBook() {
     const main = document.querySelector('.main');
-    
+
     for (let book of myLibrary) {
         bookCard(book, main);
     }
@@ -61,7 +61,7 @@ function removeCardBtn(container) {
 
     removeBtn.classList.add('button');
     removeBtn.textContent = 'remove';
-    
+
     removeBtn.addEventListener('click', function(event) {
         const section = event.target.parentElement;
         const bookId = section.getAttribute('data-id');
@@ -78,11 +78,11 @@ function toggleReadStateBtn(container, book) {
     const toggleReadBtn = document.createElement('button');
     toggleReadBtn.classList.add('button');
     toggleReadBtn.textContent = book.read ? 'Mark as Unread' : 'Mark as Read';
-    
+
     toggleReadBtn.addEventListener('click', function(event) {
         const section = event.target.parentElement;
         const bookId = section.getAttribute('data-id');
-        
+
         const bookIndex = myLibrary.findIndex(book => book.id === bookId);
         myLibrary[bookIndex].read = !myLibrary[bookIndex].read;
         toggleReadBtn.textContent = myLibrary[bookIndex].read ? 'Mark as Unread' : 'Mark as Read';
@@ -97,10 +97,10 @@ function bookCard(book, container) {
     const p = document.createElement('p');
 
     p.textContent = book.info();
-    
+
     section.setAttribute('data-id', book.id);
     section.appendChild(p);
-   
+
     removeCardBtn(section);
     toggleReadStateBtn(section, book);
     container.appendChild(section);
@@ -119,7 +119,7 @@ function addBookToLibrary() {
 
             return document.getElementById(key).value;
         })
-        
+
         myLibrary.push(new Book(...args));
         tempBook = null;
         console.log(myLibrary);

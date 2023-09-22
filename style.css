@@ -1,5 +1,6 @@
 :root {
-  --bg-color: #436976;
+  --second-bg-color: #242c2e;
+  --main-bg-color: #67738b;
 
   --content-padding: calc(0.5rem + 0.5vh);
 
@@ -17,14 +18,49 @@
 }
 
 body {
+  display: grid;
+  grid-template-rows: 1fr 10fr;
+  grid-template-columns: 1fr 4fr 1fr;
   min-height: 100vh;
+  font-size: calc(0.75rem + 1vw);
+  background-color: var(--second-bg-color);
+  color: white;
+}
+
+main {
+  grid-area: 2 / 2;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: calc(1rem + 0.5vh);
-  font-size: calc(0.75rem + 1vw);
-  background-color: var(--bg-color);
+  min-width: 60%;
+  flex: 1;
+  background-color: var(--main-bg-color);
+}
+
+header {
+  grid-column: span 3;
+  display: grid;
+  align-self: center;
+  justify-self: center;
+  padding: var(--section-item-gap);
+}
+
+.track {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.track img {
+  animation: marquee 1s cubic-bezier(0.18, 0.89, 0.32, 1.28) infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 fieldset {
