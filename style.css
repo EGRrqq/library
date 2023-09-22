@@ -8,7 +8,7 @@
   --section-gap: calc(3rem + 0.5vh);
   --section-item-gap: calc(1rem + 0.5vw);
 
-  --btn-min-w: calc(5rem + 1vw);
+  --btn-min-w: calc(2rem + 1vw);
 
   --rupert-width: 192px;
 }
@@ -21,7 +21,7 @@
 
 body {
   display: grid;
-  grid-template-rows: 1fr 10fr;
+  grid-template-rows: 0.1fr 1fr;
   grid-template-columns: 1fr 4fr 1fr;
   min-height: 100vh;
   font-size: calc(0.75rem + 1vw);
@@ -66,6 +66,21 @@ header {
   100% {
     transform: translateX(-100%);
   }
+}
+
+aside {
+  grid-area: 2 / 3; 
+  justify-self: center;
+  align-self: end;
+
+ /* width must be set to center the button  */
+  width: var(--btn-min-w);
+}
+
+aside button {
+  position: fixed;
+  bottom: 15%;
+  width: var(--btn-min-w);
 }
 
 fieldset {
