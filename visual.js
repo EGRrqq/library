@@ -1,4 +1,5 @@
-let catsOnScreen = Math.ceil(window.innerWidth / 192);
+let rupertWidth = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--rupert-width'));
+let catsOnScreen = Math.ceil(window.innerWidth / rupertWidth);
 
 (function uuh() {
     appendSpinningCat();
@@ -18,7 +19,7 @@ function appendSpinningCat() {
 }
 
 function handleResize() {
-    const newCatsOnScreen = Math.ceil(window.innerWidth / 192);
+    const newCatsOnScreen = Math.ceil(window.innerWidth / rupertWidth);
 
     if (newCatsOnScreen > catsOnScreen) {
         const diff = newCatsOnScreen - catsOnScreen;

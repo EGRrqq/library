@@ -9,6 +9,8 @@
   --section-item-gap: calc(1rem + 0.5vw);
 
   --btn-min-w: calc(5rem + 1vw);
+
+  --rupert-width: 192px;
 }
 
 *, *::before, *::after {
@@ -34,6 +36,7 @@ main {
   min-width: 60%;
   flex: 1;
   background-color: var(--main-bg-color);
+  border-radius: 0.5rem;
 }
 
 header {
@@ -52,6 +55,8 @@ header {
 
 .track img {
   animation: marquee 1s cubic-bezier(0.18, 0.89, 0.32, 1.28) infinite;
+  width: var(--rupert-width);
+  height: auto;
 }
 
 @keyframes marquee {
