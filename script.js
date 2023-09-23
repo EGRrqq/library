@@ -1,10 +1,11 @@
+Book.prototype.id = Math.random().toString(36).substring(2);
 Book.prototype.info = function() {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
 }
 
 const Harry = new Book('Signet 1984', 'George Orwell', 272, false);
 const Barry = new Book('Anchor The Stand', 'Stephen King', 1200, false);
-const Jarry = new Book('Clockwork Orange', 'Anthony Burgess', 240, false);
+const Jarry = new Book('Clockwork Orange', 'Anthony Burgess', 240, true);
 
 let myLibrary = [Harry, Barry, Jarry];
 console.log('library:', myLibrary);
@@ -39,20 +40,20 @@ function closeModal() {
 }
 
 function displayExistBook() {
-    const main = document.querySelector('.main');
+    const bookCollection = document.querySelector('.book-collection');
 
     for (let book of myLibrary) {
-        bookCard(book, main);
+        bookCard(book, bookCollection);
     }
 }
 
 function displayNewBook() {
     const form = document.querySelector('form');
-    const main = document.querySelector('.main');
+    const bookCollection = document.querySelector('.book-collection');
 
     form.addEventListener('submit', function() {
         const book = myLibrary[myLibrary.length - 1];
-        bookCard(book, main);
+        bookCard(book, bookCollection);
     })
 }
 
@@ -75,43 +76,99 @@ function removeCardBtn(container) {
     container.appendChild(removeBtn);
 }
 
-function toggleReadStateBtn(container, book) {
-    const toggleReadBtn = document.createElement('button');
-    toggleReadBtn.classList.add('btn');
-    toggleReadBtn.textContent = book.read ? 'Mark as Unread' : 'Mark as Read';
+function toggleReadState(container, book) {
+    const toggleRead = document.createElement('input');
+    toggleRead.ariaLabel = 'book was read?';
+    toggleRead.name = "toggle read";
+    toggleRead.type = 'checkbox';
+    toggleRead.checked = book.read;
 
-    toggleReadBtn.addEventListener('click', function(event) {
+    toggleRead.addEventListener('click', function(event) {
         const section = event.target.parentElement;
         const bookId = section.getAttribute('data-id');
+        const li = document.querySelector(`section[data-id="${bookId}"] li[data-content="read"]`);
 
-        const bookIndex = myLibrary.findIndex(book => book.id === bookId);
-        myLibrary[bookIndex].read = !myLibrary[bookIndex].read;
-        toggleReadBtn.textContent = myLibrary[bookIndex].read ? 'Mark as Unread' : 'Mark as Read';
+        myLibrary.find(book => book.id === bookId).read = toggleRead.checked;
+        li.textContent = 'read: ' + toggleRead.checked;
         console.log(myLibrary);
     })
 
-    container.appendChild(toggleReadBtn);
+    container.appendChild(toggleRead);
 }
 
 function bookCard(book, container) {
     const section = document.createElement('section');
-    const p = document.createElement('p');
-
-    p.textContent = book.info();
-
+    section.classList.add('book-card');
     section.setAttribute('data-id', book.id);
-    section.appendChild(p);
 
-    removeCardBtn(section);
-    toggleReadStateBtn(section, book);
+    cardkHeader(book, section);
+    cardBody(book, section);
+    cardFooter(book, section);
+
     container.appendChild(section);
+}
+
+function cardFooter(book, container) {
+    const div = document.createElement('div');
+    div.classList.add('card-footer');
+
+    removeCardBtn(div);
+    toggleReadState(div, book);
+
+    container.appendChild(div);
+}
+
+function cardkHeader(book, container) {
+    const div = document.createElement('div');
+    div.classList.add('card-header');
+
+    const span = document.createElement('span');
+    span.textContent = '###'
+
+    const h2 = document.createElement('h2');
+    h2.textContent = book.title;
+
+    div.appendChild(span);
+    div.appendChild(h2);
+
+    container.appendChild(div);
+}
+
+function cardBody(book, container) {
+    const div = document.createElement('div');
+    div.classList.add('card-body');
+
+    const spanFirst = document.createElement('span');
+    const spanSecond = document.createElement('span');
+    spanFirst.textContent = '```';
+    spanSecond.textContent = '```';
+
+    const ul = document.createElement('ul');
+
+    let tempBook = new Book();
+
+    for (const key in tempBook) {
+        if (key === 'info' || key === 'id' || key === 'title') continue;
+
+        const li = document.createElement('li');
+        li.textContent = `${key}: ${book[key]}`;
+        li.setAttribute('data-content', key);
+        ul.appendChild(li);
+    }
+
+    tempBook = null;
+
+    div.appendChild(spanFirst);
+    div.appendChild(ul);
+    div.appendChild(spanSecond);
+    container.appendChild(div);
 }
 
 function addBookToLibrary() {
     const form = document.querySelector('form');
 
     form.addEventListener('submit', function() {
-        let tempBook = new Book()
+        let tempBook = new Book();
 
         const args = Object.keys(tempBook).filter(key => key !== 'id').map(key => {
             if (key === 'read') {

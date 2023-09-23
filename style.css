@@ -184,3 +184,7 @@ dialog {
   transform: translate(-50%, -50%);
   background: none;
 }
+
+.book-collection {
+  display: grid;
+}
