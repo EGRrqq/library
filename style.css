@@ -74,13 +74,13 @@ header {
 
 aside {
   grid-area: 2 / 3; 
-  justify-self: center;
   align-self: end;
 }
 
 aside button {
   position: fixed;
-  bottom: 15%;
+  bottom: 10%;
+  width: 10%;
   transform: translate(-50%, -50%);
 }
 
