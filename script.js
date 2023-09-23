@@ -1,4 +1,3 @@
-Book.prototype.id = Math.random().toString(36).substring(2);
 Book.prototype.info = function() {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
 }
@@ -44,6 +43,9 @@ function displayExistBook() {
 
     for (let book of myLibrary) {
         bookCard(book, bookCollection);
+
+        const hr = document.createElement('hr');
+        bookCollection.appendChild(hr);
     }
 }
 
@@ -54,6 +56,9 @@ function displayNewBook() {
     form.addEventListener('submit', function() {
         const book = myLibrary[myLibrary.length - 1];
         bookCard(book, bookCollection);
+
+        const hr = document.createElement('hr');
+        bookCollection.appendChild(hr);
     })
 }
 
@@ -65,8 +70,8 @@ function removeCardBtn(container) {
     removeBtn.setAttribute('aria-label', 'remove book');
 
     removeBtn.addEventListener('click', function(event) {
-        const section = event.target.parentElement;
-        const bookId = section.getAttribute('data-id');
+        const section = event.target.closest('section');
+        const bookId = section.dataset.id;
 
         myLibrary = myLibrary.filter(book => book.id !== bookId);
         section.remove();
@@ -76,7 +81,7 @@ function removeCardBtn(container) {
     container.appendChild(removeBtn);
 }
 
-function toggleReadState(container, book) {
+function toggleReadState(book, container) {
     const toggleRead = document.createElement('input');
     toggleRead.ariaLabel = 'book was read?';
     toggleRead.name = "toggle read";
@@ -84,11 +89,11 @@ function toggleReadState(container, book) {
     toggleRead.checked = book.read;
 
     toggleRead.addEventListener('click', function(event) {
-        const section = event.target.parentElement;
-        const bookId = section.getAttribute('data-id');
-        const li = document.querySelector(`section[data-id="${bookId}"] li[data-content="read"]`);
+        const section = event.target.closest('section');
+        const bookId = section.dataset.id;
 
-        myLibrary.find(book => book.id === bookId).read = toggleRead.checked;
+        const li = section.querySelector(`li[data-content="read"]`);
+        myLibrary.find(book => book.id === bookId).read = toggleRead.checked
         li.textContent = 'read: ' + toggleRead.checked;
         console.log(myLibrary);
     })
@@ -99,9 +104,9 @@ function toggleReadState(container, book) {
 function bookCard(book, container) {
     const section = document.createElement('section');
     section.classList.add('book-card');
-    section.setAttribute('data-id', book.id);
+    section.dataset.id = book.id;
 
-    cardkHeader(book, section);
+    cardHeader(book, section);
     cardBody(book, section);
     cardFooter(book, section);
 
@@ -113,17 +118,18 @@ function cardFooter(book, container) {
     div.classList.add('card-footer');
 
     removeCardBtn(div);
-    toggleReadState(div, book);
+    toggleReadState(book, div);
 
     container.appendChild(div);
 }
 
-function cardkHeader(book, container) {
+function cardHeader(book, container) {
     const div = document.createElement('div');
     div.classList.add('card-header');
 
     const span = document.createElement('span');
     span.textContent = '###'
+    span.classList.add('bold');
 
     const h2 = document.createElement('h2');
     h2.textContent = book.title;
@@ -152,7 +158,7 @@ function cardBody(book, container) {
 
         const li = document.createElement('li');
         li.textContent = `${key}: ${book[key]}`;
-        li.setAttribute('data-content', key);
+        li.dataset.content = key;
         ul.appendChild(li);
     }
 
