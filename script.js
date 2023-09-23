@@ -59,7 +59,7 @@ function displayNewBook() {
 function removeCardBtn(container) {
     const removeBtn = document.createElement('button');
 
-    removeBtn.classList.add('button');
+    removeBtn.classList.add('btn');
     removeBtn.textContent = '-';
     removeBtn.setAttribute('aria-label', 'remove book');
 
@@ -77,7 +77,7 @@ function removeCardBtn(container) {
 
 function toggleReadStateBtn(container, book) {
     const toggleReadBtn = document.createElement('button');
-    toggleReadBtn.classList.add('button');
+    toggleReadBtn.classList.add('btn');
     toggleReadBtn.textContent = book.read ? 'Mark as Unread' : 'Mark as Read';
 
     toggleReadBtn.addEventListener('click', function(event) {
