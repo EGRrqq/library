@@ -4,6 +4,7 @@
   --form-main-bg-color: #ffffff;
   --form-second-bg-color: #bebcbc;
   --form-darker-bg-color: #4e6070;
+  --accent-color: #ed89ff;
 
   --content-padding: calc(0.5rem + 0.5vh);
   --form-padding: calc(0.1rem + 0.1vw);
@@ -87,7 +88,7 @@ aside button {
 form {
   display: grid;
   color: var(--second-bg-color);
-  background-color: var(--form-second-bg-color);
+  background-color: var(--accent-color);
   border-top: 2px solid var(--form-main-bg-color);
   border-left: 2px solid var(--form-main-bg-color);
   border-right: 4px groove var(--second-bg-color);
@@ -109,9 +110,12 @@ form {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: calc(var(--main-font-size) * 0.75);
   color: var(--form-main-bg-color);
   padding: var(--form-padding); 
+}
+
+.form-header h3 {
+  font-size: calc(var(--main-font-size) * 1.25);
 }
 
 .form-footer {
@@ -133,7 +137,7 @@ form {
   justify-content: space-between;
 }
 
-input[type="checkbox"] {
+form input[type="checkbox"] {
   min-width: var(--section-padding);
 }
 
@@ -187,4 +191,65 @@ dialog {
 
 .book-collection {
   display: grid;
+  gap: var(--section-gap);
+  padding: var(--section-padding);
+}
+
+
+.book-collection h1 {
+  justify-self: center;
+  font-size: calc(var(--main-font-size) * 1.75);
+  text-align: center;
+}
+
+.card-header {
+  display: flex;
+  gap: var(--content-padding);
+  align-items: center;
+}
+
+.card-header h2 {
+  color: var(--accent-color);
+  display: inline-block;
+  font-size: calc(var(--main-font-size) * 1.5);
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-item-gap);
+}
+
+.card-footer {
+  display: grid;
+  grid-template-columns: repeat(2, calc(var(--section-padding) * 1.5));
+  grid-template-rows: calc(var(--section-padding) * 1.5);
+  gap: var(--section-item-gap);
+}
+
+.book-card {
+  display: grid;
+  gap: var(--section-item-gap);
+}
+
+article > hr {
+  padding-bottom: calc(var(--content-padding) / 2);
+  border-bottom: 1px dashed black;
+}
+
+.card-body > hr {
+    border-bottom: 3px dotted;
+    margin-right: 95%;
+}
+
+.card-btn {
+  padding: var(--content-padding) calc(var(--content-padding) * 1.5);
+  place-self: center;
+  min-height: calc(var(--section-padding) * 1.5);
+  min-width: calc(var(--section-padding) * 1.5);
+}
+
+.card-body ul {
+  display: grid;
+  gap: var(--content-padding);
 }

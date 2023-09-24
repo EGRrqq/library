@@ -65,7 +65,7 @@ function displayNewBook() {
 function removeCardBtn(container) {
     const removeBtn = document.createElement('button');
 
-    removeBtn.classList.add('btn');
+    removeBtn.classList.add('btn', 'rounded', 'card-btn');
     removeBtn.textContent = '-';
     removeBtn.setAttribute('aria-label', 'remove book');
 
@@ -144,10 +144,8 @@ function cardBody(book, container) {
     const div = document.createElement('div');
     div.classList.add('card-body');
 
-    const spanFirst = document.createElement('span');
-    const spanSecond = document.createElement('span');
-    spanFirst.textContent = '```';
-    spanSecond.textContent = '```';
+    const hrFirst = document.createElement('hr');
+    const hrSecond = document.createElement('hr');
 
     const ul = document.createElement('ul');
 
@@ -164,9 +162,9 @@ function cardBody(book, container) {
 
     tempBook = null;
 
-    div.appendChild(spanFirst);
+    div.appendChild(hrFirst);
     div.appendChild(ul);
-    div.appendChild(spanSecond);
+    div.appendChild(hrSecond);
     container.appendChild(div);
 }
 
