@@ -1,0 +1,21 @@
+{
+  "name": "library",
+  "version": "1.0.0",
+  "description": "While I don't know how to configure prettier to format on save, I need to install it locally",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EGRrqq/library.git"
+  },
+  "author": "egrqq",
+  "bugs": {
+    "url": "https://github.com/EGRrqq/library/issues"
+  },
+  "homepage": "https://github.com/EGRrqq/library#readme",
+  "devDependencies": {
+    "prettier": "3.0.3"
+  }
+}

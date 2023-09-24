@@ -17,10 +17,12 @@
 
   --rupert-width: 192px;
 
-  --main-font-size: calc(0.75rem + 1vw)
+  --main-font-size: calc(0.75rem + 1vw);
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   border: 0;
@@ -74,7 +76,7 @@ header {
 }
 
 aside {
-  grid-area: 2 / 3; 
+  grid-area: 2 / 3;
   align-self: end;
 }
 
@@ -106,12 +108,13 @@ form {
 
 .form-header {
   background-color: var(--form-darker-bg-color);
-  margin: var(--form-padding) var(--form-padding) var(--section-padding) var(--form-padding);
+  margin: var(--form-padding) var(--form-padding) var(--section-padding)
+    var(--form-padding);
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: var(--form-main-bg-color);
-  padding: var(--form-padding); 
+  padding: var(--form-padding);
 }
 
 .form-header h3 {
@@ -151,7 +154,7 @@ input {
   font-size: inherit;
 }
 
-.accent-btn{
+.accent-btn {
   background-color: #3394c1;
   color: #fff2f6;
 }
@@ -164,8 +167,8 @@ input {
   border-radius: 0.5rem;
 }
 
-.form-btn {
-  background-color: var(--form-second-bg-color);
+#close-btn {
+  background-color: indianred;
 }
 
 .btn {
@@ -194,7 +197,6 @@ dialog {
   gap: var(--section-gap);
   padding: var(--section-padding);
 }
-
 
 .book-collection h1 {
   justify-self: center;
@@ -238,8 +240,8 @@ article > hr {
 }
 
 .card-body > hr {
-    border-bottom: 3px dotted;
-    margin-right: 95%;
+  border-bottom: 3px dotted;
+  margin-right: 95%;
 }
 
 .card-btn {

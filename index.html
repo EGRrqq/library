@@ -1,66 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
     <script src="./visual.js" defer></script>
     <title>Library</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <dialog id="book-modal">
-        <form method="dialog" class="rounded">
-            <div class="form-header rounded">
-                <h3>add a book</h3>
-                <button type="button" aria-label="close" id="close-btn" class="btn form-btn rounded"
-                    formnovalidate>X</button>
-            </div>
+      <form method="dialog" class="rounded">
+        <div class="form-header rounded">
+          <h3>add a book</h3>
+          <button
+            type="button"
+            aria-label="close"
+            id="close-btn"
+            class="btn rounded"
+            formnovalidate
+          >
+            X
+          </button>
+        </div>
 
-            <div class="section-wrapper rounded">
-                <section class="form-section">
-                    <label for="title">title</label>
-                    <input type="text" name="title" id="title" class="rounded" required autofocus />
-                </section>
+        <div class="section-wrapper rounded">
+          <section class="form-section">
+            <label for="title">title</label>
+            <input
+              type="text"
+              name="title"
+              id="title"
+              class="rounded"
+              required
+              autofocus
+            />
+          </section>
 
-                <section class="form-section">
-                    <label for="author">author</label>
-                    <input type="text" name="author" id="author" class="rounded" required />
-                </section>
+          <section class="form-section">
+            <label for="author">author</label>
+            <input
+              type="text"
+              name="author"
+              id="author"
+              class="rounded"
+              required
+            />
+          </section>
 
-                <section class="form-section">
-                    <label for="pages">number of pages</label>
-                    <input type="number" name="pages" id="pages" class="rounded" required />
-                </section>
+          <section class="form-section">
+            <label for="pages">number of pages</label>
+            <input
+              type="number"
+              name="pages"
+              id="pages"
+              class="rounded"
+              required
+            />
+          </section>
 
-                <section class="form-section">
-                    <label for="read">book was read?</label>
-                    <input type="checkbox" name="read" id="read" class="rounded" />
-                </section>
-            </div>
+          <section class="form-section">
+            <label for="read">book was read?</label>
+            <input type="checkbox" name="read" id="read" class="rounded" />
+          </section>
+        </div>
 
-            <div class="form-footer">
-                <button type="submit" value="default" class="btn form-btn rounded">submit</button>
-            </div>
-        </form>
+        <div class="form-footer">
+          <button type="submit" value="default" class="btn accent-btn rounded">
+            submit
+          </button>
+        </div>
+      </form>
     </dialog>
 
-    <header>
-    </header>
+    <header></header>
 
     <aside>
-        <button type="button" id="show-modal" aria-label="add book" class="btn accent-btn bold rounded">+</button>
+      <button
+        type="button"
+        id="show-modal"
+        aria-label="add book"
+        class="btn accent-btn bold rounded"
+      >
+        +
+      </button>
     </aside>
 
     <main class="rounded">
-        <article class="book-collection">
-            <h1>Book Collection</h1>
-            <hr>
-        </article>
+      <article class="book-collection">
+        <h1>Book Collection</h1>
+        <hr />
+      </article>
     </main>
-
-</body>
-
+  </body>
 </html>
