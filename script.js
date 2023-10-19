@@ -74,6 +74,7 @@ function removeCardBtn(container) {
     const bookId = section.dataset.id;
 
     myLibrary = myLibrary.filter((book) => book.id !== bookId);
+    section.nextElementSibling.remove();
     section.remove();
     console.log(myLibrary);
   });
