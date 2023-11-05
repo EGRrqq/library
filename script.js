@@ -1,6 +1,17 @@
-Book.prototype.info = function () {
-  return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
-};
+class Book {
+  id = Math.random().toString(36).substring(2);
+
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read || false;
+  }
+
+  info() {
+    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
+  }
+}
 
 const Harry = new Book("Signet 1984", "George Orwell", 272, false);
 const Barry = new Book("Anchor The Stand", "Stephen King", 1200, false);
@@ -189,12 +200,4 @@ function addBookToLibrary() {
     tempBook = null;
     console.log(myLibrary);
   });
-}
-
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read || false;
-  this.id = Math.random().toString(36).substring(2);
 }
